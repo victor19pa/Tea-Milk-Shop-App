@@ -1,7 +1,8 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, Platform } from 'react-native';
-import { COLORS, icons } from '../constants';
+import { CustomTabBar, CustomTabBarButton } from '../components/Tabs';
+import { COLORS, icons, SIZES } from '../constants';
 import { Home, Rewards } from '../screens';
 
 const Tab = createBottomTabNavigator();
@@ -10,18 +11,24 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle:{
+        tabBarStyle: {
           position: 'absolute',
           bottom: 0,
           left: 0,
           right: 0,
           elevation: 0,
-          backgroundColor: COLORS.gray3,
+          backgroundColor: 'transparent',
           borderTopColor: "transparent",
           height: (Platform.OS == 'android') ? 60 : 80
         }
       }}
+      tabBar={(props) => (
+        <CustomTabBar 
+          props = { props }
+        />
+      )}
     >
       <Tab.Screen
         name="Home"
@@ -38,6 +45,15 @@ const Tabs = () => {
               }}
             />
           ),
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              containerStyle={{
+                borderTopLeftRadius: SIZES.radius * 2.5
+              }}
+            />
+          ),
+          
         }}
       />
       <Tab.Screen
@@ -52,6 +68,14 @@ const Tabs = () => {
                 width: 35,
                 height: 35,
                 tintColor: focused ? COLORS.primary : COLORS.black
+              }}
+            />
+          ),
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              containerStyle={{
+                marginRight: 6
               }}
             />
           ),
@@ -73,10 +97,16 @@ const Tabs = () => {
               }}
             />
           ),
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              isFloat={true}
+            />
+          )
         }}
       />
       <Tab.Screen
-        name="Favourite"
+        name="Favorite"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -90,6 +120,14 @@ const Tabs = () => {
               }}
             />
           ),
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              containerStyle={{
+                marginLeft: 6
+              }}
+            />
+          )
         }}
       />
       <Tab.Screen
@@ -107,6 +145,14 @@ const Tabs = () => {
               }}
             />
           ),
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              containerStyle={{
+                borderTopRightRadius: SIZES.radius * 2.5
+              }}
+            />
+          )
         }}
       />
     </Tab.Navigator>
