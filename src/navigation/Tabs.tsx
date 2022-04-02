@@ -75,7 +75,7 @@ const Tabs = () => {
             <CustomTabBarButton
               {...props}
               containerStyle={{
-                marginRight: 6
+                marginRight: 3
               }}
             />
           ),
@@ -124,7 +124,7 @@ const Tabs = () => {
             <CustomTabBarButton
               {...props}
               containerStyle={{
-                marginLeft: 6
+                marginLeft: 3
               }}
             />
           )
