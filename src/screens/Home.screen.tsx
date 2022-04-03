@@ -1,29 +1,19 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-
+import { HeaderBar } from '../components';
+import { COLORS, SIZES } from '../constants';
 
 const Home = ({ navigation }:any) => {
-  // const navigation = useNavigation()
-  // console.log(navigation);
-  // 
+
 
   return (
-  
     <View style={styles.container}>
-      <Text>Home</Text>
+      <HeaderBar />
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Rewards")}
-      >
-        <Text>Navigate to Rewards</Text>
-      </TouchableOpacity>
+      <ScrollView style={styles.scrollContainer}>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Location")}
-      >
-        <Text>Navigate to Locations</Text>
-      </TouchableOpacity>
+      </ScrollView>
     </View>
   )
 }
@@ -31,8 +21,13 @@ const Home = ({ navigation }:any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+  },
+  scrollContainer:{
+    flex:1,
+    marginTop: -25,
+    borderTopLeftRadius: SIZES.radius * 2,
+    borderTopRightRadius: SIZES.radius *2,
+    backgroundColor: COLORS.secondary,
   }
 })
 
