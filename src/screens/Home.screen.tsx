@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { View, StyleSheet, ScrollView } from 'react-native'
+import { connect } from 'react-redux';
 import { HeaderBar } from '../components';
 import { COLORS, SIZES } from '../constants';
+import appTheme from '../constants/theme';
 
-const Home = ({ navigation }:any) => {
-
+const Home = ({ navigation, appTheme }:any) => {
 
   return (
     <View style={styles.container}>
@@ -27,8 +27,21 @@ const styles = StyleSheet.create({
     marginTop: -25,
     borderTopLeftRadius: SIZES.radius * 2,
     borderTopRightRadius: SIZES.radius *2,
-    backgroundColor: COLORS.secondary,
+    backgroundColor: appTheme.backgroundColor,
   }
 })
 
-export default Home
+function mapStateToProps(state) {
+  return {
+    appTheme: state.appTheme,
+    error: state.error
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
